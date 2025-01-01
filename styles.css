@@ -1,0 +1,333 @@
+/* ------------------ */
+/* CUSTOM PROPERTIES  */
+/* ------------------ */
+
+:root {
+
+    /* Typography */
+
+    /* font families */
+    --ff-raleway: "Raleway", serif;
+
+    /* font sizes */
+    --fs-l: 3rem;
+    --fs-m: 0.875rem;
+    --fs-s: 0.75rem;
+
+    /* Dimensions */
+    --gap-l: 2rem;
+    --gap-s: 1rem;
+
+    /* Color */
+    --white: 0, 0%, 100%;
+    --pale-blue: 243, 100%, 93%;
+    --grayish-blue: 229, 7%, 55%;
+    --dark-blue: 228, 56%, 26%;
+    --v-dark-blue: 229, 57%, 11%;
+    --pink-gradient: hsl(6, 100%, 80%), hsl(335, 100%, 65%);
+}
+
+
+/* ------------------ */
+/* RESET              */
+/* ------------------ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+
+  margin: 0;
+  justify-content: center;
+}
+
+@media (min-width: 35em) {
+  body {
+    align-items: center;
+  }
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button, 
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+h1 {
+  font-weight: 400;
+  color: hsl(var(--white), 0.7);
+}
+
+span {
+  font-weight: 700;
+}
+
+
+/* ------------------ */
+/* UTILITY CLASSES    */
+/* ------------------ */
+
+/* Typograpy */
+.ff-raleway { font-family: var(--ff-raleway); }
+
+.fs-l { font-size: var(--fs-l); }
+.fs-m { font-size: var(--fs-m); }
+.fs-s { font-size: var(--fs-s); }
+
+.toupper{ text-transform: uppercase;}
+
+/* Color */
+.bg-dark { background-color: hsl(var(--v-dark-blue)); }
+.bg-light { background-color: hsl(var(--dark-blue)); }
+.bg-gradient { background: linear-gradient(to right, var(--pink-gradient)); }
+
+.text-white { color: hsl(var(--white)); }
+.text-black { color: #000; }
+.text-grayish-blue { color: hsl(var(--grayish-blue)); }
+
+/* Layout & Display */
+.d-flex {
+  display: flex;
+  gap: clamp(var(--gap-s), 4.5vw, var(--gap-l))
+}
+
+.d-flex--col {
+  flex-direction: column;
+}
+
+.container {
+  width: min(88%, 920px);
+  margin-inline: auto;
+}
+
+.card {
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+.card--curved {
+  border-radius: 0.5rem 100px 0.5rem 0.5rem;
+}
+
+.card--normal {
+  position: relative;
+}
+
+@media (min-width:35em) {
+  .d-flex--col {
+    flex-direction: row;
+  }  
+
+  .container {
+    align-items: flex-end;
+  }
+
+  .card--curved {
+    flex: 37.8%;
+  }
+
+  .card--normal {
+    flex: 58.5%;
+  }
+}
+
+/* ------------------ */
+/* COMPONENTS         */
+/* ------------------ */
+
+/* icons */
+.icon-box {
+  margin-block-start: 2rem;
+}
+
+.icon-box div {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  aspect-ratio: 1;
+
+  border-radius: 0.5rem;
+}
+
+/* progress bar */
+.progress-indicator {
+  border-radius: 100px;
+  margin-block: 1rem 0.75rem;
+  padding: 0.125rem;
+}
+
+.progress-indicator .rate-fill {
+  justify-content: flex-end;
+  width: 81.5%;
+  padding: 0.19rem;
+
+  border-radius: 100px;
+}
+
+.progress-indicator .rate-fill::after {
+  content: '';
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  background-color: hsl(var(--white));
+
+  width: 0.875rem;
+  aspect-ratio: 1;
+  border-radius: 100px;
+}
+
+.rate-margin {
+  justify-content: space-between;
+  margin-block-end: 1rem;
+}
+
+@media (min-width: 35em) {
+  .rate-margin {
+    margin-block-end: 0;
+  }
+}
+
+/* balance display */
+.data-balance {
+  position: absolute;
+  
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+
+  background-color: hsl(var(--white));
+  font-weight: 700;
+}
+
+@media (max-width: 34.999999em) {
+  .data-balance {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -2.25rem;
+  }
+  
+}
+
+@media (min-width: 35em) {
+  .data-balance {
+    right: 2.5rem;
+    top: -3rem;
+
+    border-radius: 0.5rem 0.5rem 0 0.5rem;
+  }
+
+  .data-balance::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 99%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-width: 22px 0 0 22px;
+    border-color: #fff transparent transparent;
+  }
+  
+}
+
+/* background */
+body {
+  background-image: url(./images/bg-mobile.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 50em) {
+  body {
+    background-image: url(./images/bg-desktop.png);
+    background-size: 100vw 50vh;
+    background-position: bottom center;
+  }
+}
+
+/* footer */
+.attribution { 
+  font-size: 11px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.attribution a { 
+  color: hsl(228, 45%, 44%);
+  text-decoration: none;
+  transition: 300ms ease-in-out;
+}
+
+.attribution a:hover,
+.attribution a:focus {
+  font-size: 0.8rem;
+  font-weight: bold;
+  background: linear-gradient(to right, var(--pink-gradient));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
